@@ -1,2 +1,2 @@
 # Refidge
-Smart Refridgerator with object detection and freshness classification
+If cannot unzip the Senior Project2 file which is the frontend please use winrar to unzip it.
