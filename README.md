@@ -101,3 +101,63 @@ Make sure the Raspberry Pi camera stream and Backend API are running before star
 ```bash
 exit
 ```
+## Frontend (Flutter Application)
+
+The frontend is developed using Flutter and Dart. It provides the user interface for managing fridge inventory, monitoring food freshness and expiry dates, and viewing expense summaries.
+
+### Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- [Flutter SDK](https://docs.flutter.dev/get-started/install)
+- Android Studio or Visual Studio Code
+- A working Android emulator or a connected physical device
+
+### How to Run
+
+Follow these steps to run the application on your local machine:
+
+**1. Navigate to the Frontend directory**
+
+```bash
+cd Frontend
+```
+
+**2. Install dependencies**
+
+```bash
+flutter pub get
+```
+
+**3. Configure Backend API Connection**
+
+Make sure the Backend API is running before launching the application.
+
+Update the API base URL in the Flutter project to match your backend server address.
+
+For Android Emulator, use:
+
+```text
+http://10.0.2.2:8000
+```
+
+For a physical device, use your computer's local IP address:
+
+```text
+http://<YOUR_COMPUTER_IP>:8000
+```
+
+Ensure that the computer and mobile device are connected to the same network. The backend must also be configured to accept external connections when using a physical device.
+
+**4. Run the application**
+
+```bash
+flutter run
+```
+
+### Main Features
+
+- **Inventory Management:** View, add, edit, and manage food inventory.
+- **Food Freshness Monitoring:** Display food freshness and expiry information.
+- **Expense Summary:** Track and visualize food expenses.
+- **Notifications:** Receive alerts for food items approaching their expiry dates.
