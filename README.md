@@ -1,2 +1,104 @@
 # Refidge
 If cannot unzip the Senior Project2 file which is the frontend please use winrar to unzip it.
+
+# Smart Fridge Inventory AI
+
+This project consists of a FastAPI backend for managing fridge inventory and a computer vision detection script that monitors items using YOLO and ResNet models.
+
+## Features
+
+- **FastAPI Backend (`main.py`)**: Manages inventory, handles manual/automatic item additions, and tracks usage, freshness, and expiry.
+- **AI Detection (`detect.py`)**: Connects to a video stream, uses YOLOv8 for object detection, and ResNet18 for freshness classification (Fresh vs. Rotten).
+- **Auto-Sync**: The detection script takes hourly snapshots (or on-demand) and synchronizes the physical state of the fridge with the backend JSON database.
+
+## Prerequisites
+
+Ensure you have Python 3.8+ installed. You will also need the trained model files placed in the `model/` directory:
+
+- `best.pt` (YOLO model weights)
+- `best_resnet_fruit.pth` (ResNet model weights)
+
+Install the required dependencies:
+
+```bash
+pip install fastapi uvicorn pydantic torch torchvision ultralytics opencv-python pillow requests python-multipart
+```
+
+## How to Run
+
+### 1. Connect to Raspberry Pi Camera
+
+The Raspberry Pi provides the camera video stream used by the AI detection script.
+
+- Connect both the Raspberry Pi and your computer to the same Wi-Fi network or mobile hotspot.
+- Open Terminal or PowerShell and connect to the Raspberry Pi via SSH:
+
+```bash
+ssh <username>@172.20.10.8
+```
+
+- Enter the Raspberry Pi password when prompted.
+- Verify the connection and IP address:
+
+```bash
+hostname
+hostname -I
+```
+
+- Ensure the Raspberry Pi camera is connected and its video streaming service is running.
+
+The camera stream URL is configured in `detect.py`:
+
+```python
+PI_STREAM_URL = "http://172.20.10.8:5000/video"
+```
+
+If the Raspberry Pi IP address changes, update the `PI_STREAM_URL` accordingly.
+
+### 2. Start the Backend API
+
+Navigate to the directory containing `main.py` and run the FastAPI server using `uvicorn`. The detection script expects the backend to be running on port `8000`.
+
+```bash
+uvicorn main:app --host 127.0.0.1 --port 8000 --reload
+```
+
+- API documentation: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+- Data is saved locally in `inventory_db.json` and `price_db.json`.
+
+### 3. Start the AI Detection Script
+
+Open a new terminal, navigate to the same directory, and run:
+
+```bash
+python detect.py
+```
+
+Make sure the Raspberry Pi camera stream and Backend API are running before starting the detection script.
+
+**Note:** If your Raspberry Pi camera stream uses a different IP address or port, update the `PI_STREAM_URL` inside `detect.py` before running.
+
+## Controls for `detect.py`
+
+- The camera processes a frame every 1 hour automatically.
+- Press **`r`** on the video window to manually trigger a capture and update the backend immediately.
+- Press **`q`** to quit the detection window.
+
+## Troubleshooting
+
+| Problem | Solution |
+|---|---|
+| SSH connection failed | Check the Wi-Fi connection, Raspberry Pi IP address, and SSH service. |
+| Camera stream unavailable | Check the camera connection and ensure the streaming service is running. |
+| Backend connection failed | Ensure the FastAPI server is running on port `8000`. |
+| Model file not found | Verify that `best.pt` and `best_resnet_fruit.pth` are in the correct directory. |
+
+## Shutdown
+
+1. Press `q` to close the AI detection window.
+2. Press `Ctrl + C` to stop the Backend API.
+3. If connected to Raspberry Pi via SSH, run:
+
+```bash
+exit
+```
