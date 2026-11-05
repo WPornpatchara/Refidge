@@ -3,7 +3,8 @@
 # Smart Fridge Inventory AI
 
 This project consists of a FastAPI backend for managing fridge inventory and a computer vision detection script that monitors items using YOLO and ResNet models.
-
+# Models and additional resources
+https://drive.google.com/drive/folders/1Abt59f1_mDAdIhUP_rK-0SyMGqOW0Hd1
 ## Features
 
 - **FastAPI Backend (`main.py`)**: Manages inventory, handles manual/automatic item additions, and tracks usage, freshness, and expiry.
