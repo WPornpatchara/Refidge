@@ -1,0 +1,14 @@
+{
+  "@@locale": "en",
+  "appTitle": "Refridge+",
+  "reminder": "Reminder",
+  "expiringSoon": "Expiring soon",
+  "noIngredients": "No ingredients yet. Add from Home or Scan receipt.",
+  "recommendedMenu": "Recommended Menu",
+  "addIngredients": "Add Ingredients",
+  "inventory": "Inventory",
+  "ingredients": "Ingredients",
+  "instructions": "Instructions",
+  "tags": "Tags",
+  "watchOnYoutube": "Watch on YouTube"
+}

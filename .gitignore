@@ -1,0 +1,4 @@
+
+# AI Model files
+backend/Backend/model/best.pt
+backend/Backend/model/best_resnet_fruit.pth

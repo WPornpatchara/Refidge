@@ -1,0 +1,14 @@
+{
+  "@@locale": "th",
+  "appTitle": "Refridge+",
+  "reminder": "แจ้งเตือน",
+  "expiringSoon": "ใกล้หมดอายุ",
+  "noIngredients": "ยังไม่มีวัตถุดิบ เพิ่มจากหน้า Home หรือสแกนใบเสร็จ",
+  "recommendedMenu": "เมนูแนะนำ",
+  "addIngredients": "เพิ่มวัตถุดิบ",
+  "inventory": "คลังวัตถุดิบ",
+  "ingredients": "วัตถุดิบ",
+  "instructions": "วิธีทำ",
+  "tags": "แท็ก",
+  "watchOnYoutube": "ดูใน YouTube"
+}
